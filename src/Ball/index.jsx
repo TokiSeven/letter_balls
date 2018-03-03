@@ -1,9 +1,6 @@
 import * as React from 'react';
 import * as $ from 'jquery';
 
-// const symbols = "qwertyuiopasdfghjklzxcvbnm";
-const symbols = "ft";
-
 const colors = [
     '#A60000',
     '#79005E',
@@ -31,8 +28,7 @@ export default class Ball extends React.Component {
     }
 
     ballTaped() {
-        this.timeoutFinished();
-        this.forceUpdate();
+        this.props.symbolsClicked(this.state.symbol);
 
         clearInterval(this.timerInstance);
         this.setState({
@@ -60,8 +56,8 @@ export default class Ball extends React.Component {
     }
 
     getChar() {
-        const position = parseInt(this.getRand(symbols.length));
-        return symbols.charAt(position);
+        const position = parseInt(this.getRand(this.props.symbols.length));
+        return this.props.symbols.charAt(position);
     }
 
     getColor() {

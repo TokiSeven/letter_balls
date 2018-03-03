@@ -41,3 +41,8 @@
 .hidden {
     display: none;
 }
+
+.score {
+    list-style: none;
+    font-size: 30px;
+}
