@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as $ from 'jquery';
 
 // const symbols = "qwertyuiopasdfghjklzxcvbnm";
 const symbols = "ft";
@@ -21,10 +22,30 @@ export default class Ball extends React.Component {
             delay: this.props.delay,
             left: this.getOffset(),
             color: this.getColor(),
+            class: 'ball',
         };
 
         this.timerInstance = null;
         this.timeoutFinished = this.timeoutFinished.bind(this);
+        this.ballTaped = this.ballTaped.bind(this);
+    }
+
+    ballTaped() {
+        this.timeoutFinished();
+        this.forceUpdate();
+
+        clearInterval(this.timerInstance);
+        this.setState({
+            class: 'hidden',
+        }, () => {
+            setTimeout(() => {
+                this.setState({
+                    class: 'ball',
+                });
+                this.timeoutFinished();
+                this.timerInstance = setInterval(this.timeoutFinished, 8000);
+            }, 100);
+        });
     }
 
     getRand(max, min = 0) {
@@ -54,7 +75,7 @@ export default class Ball extends React.Component {
             if (this.props.delay) {
                 timeout += 1000 * this.props.delay; // delay in s, but we need ms
             }
-            this.timerInstance = setTimeout(this.timeoutFinished, timeout);
+            this.timerInstance = setInterval(this.timeoutFinished, timeout);
         }
     }
 
@@ -68,12 +89,11 @@ export default class Ball extends React.Component {
     }
 
     render() {
-        console.log(this.state.color);
         return (
-            <div className="ball" style={{
+            <div className={this.state.class} ref="ball" style={{
                 animationDelay: `${this.state.delay}s`,
                 left: this.state.left,
-            }}>
+            }} onClick={this.ballTaped}>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 600 600"
