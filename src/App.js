@@ -7,7 +7,11 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <Ball />
+                <Ball delay={1} />
+                <Ball delay={2.5} />
+                <Ball delay={4} />
+                <Ball delay={5.5} />
+                <Ball delay={7} />
             </div>
         );
     }

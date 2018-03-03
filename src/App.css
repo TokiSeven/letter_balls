@@ -10,3 +10,30 @@
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
+
+.ball {
+    position: absolute;
+    display: inline-block;
+    top: 100%;
+    animation: ballGoUp 8s infinite ease-in;
+}
+
+.ball__symbol {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    line-height: 220px;
+    color: #eee;
+    font-size: 80px;
+    text-align: center;
+}
+
+@keyframes ballGoUp {
+    from {
+        top: 100%;
+    }
+    to {
+        top: -250px;
+    }
+}
