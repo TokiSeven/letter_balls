@@ -57,7 +57,7 @@ export default class Ball extends React.Component {
 
     getChar() {
         const position = parseInt(this.getRand(this.props.symbols.length));
-        return this.props.symbols.charAt(position);
+        return this.props.symbols[position];
     }
 
     getColor() {
