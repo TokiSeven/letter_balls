@@ -1,4 +1,9 @@
+html, body {
+    overflow: hidden;
+}
+
 .App {
+    overflow: hidden;
     position: absolute;
     left: 0;
     right: 0;
